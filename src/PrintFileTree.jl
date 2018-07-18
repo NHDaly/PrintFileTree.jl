@@ -29,7 +29,7 @@ function printfiletree_helper(root, depth=0, opendirs=[true])
             pop!(opendirs)
         end
     end
-    return length(files)
+    nothing
 end
 
 end # module
