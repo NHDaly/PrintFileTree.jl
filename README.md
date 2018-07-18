@@ -25,3 +25,8 @@ my/files
 └── d
 ```
 
+## Installation
+
+`Pkg.clone("https://github.com/NHDaly/PrintFileTree.jl")`
+
+
