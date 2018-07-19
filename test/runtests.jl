@@ -22,7 +22,7 @@ printfiletree(tmpdir)
 Compat.Sys.BINDIR
 
 # Actually @test the output.
-output = read(`$(Compat.Sys.BINDIR)/julia -e "using PrintFileTree; printfiletree(\"$tmpdir\")"`, String)
+output = read(`$(Compat.Sys.BINDIR)/julia -e "using PrintFileTree; printfiletree(raw\"$tmpdir\")"`, String)
 @test occursin(
     """$tmpdir
        ├── a
