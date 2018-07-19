@@ -1,5 +1,6 @@
 using PrintFileTree
-using Base.Test
+using Compat
+using Compat.Test
 
 tmpdir = mktempdir()
 touch(joinpath(tmpdir, "a"))
@@ -18,25 +19,27 @@ mkpath(joinpath(tmpdir, "e", "the", "end"))
 # Run once to make sure it doesn't crash or something.
 printfiletree(tmpdir)
 
+Compat.Sys.BINDIR
+
 # Actually @test the output.
-output = readstring(`$JULIA_HOME/julia -e "using PrintFileTree; printfiletree(\"$tmpdir\")"`)
-println(output)
-@test contains(output,
-     """$tmpdir
-        ├── a
-        ├── b
-        ├── c
-        │   ├── a
-        │   │   ├── a
-        │   │   │   └── subfiles
-        │   │   └── subfiles
-        │   ├── wow
-        │   │   └── cats
-        │   │       └── are
-        │   │           ├── so
-        │   │           └── weird
-        │   └── z
-        ├── d
-        └── e
-            └── the
-                └── end""")
+output = read(`$(Compat.Sys.BINDIR)/julia -e "using PrintFileTree; printfiletree(\"$tmpdir\")"`, String)
+@test occursin(
+    """$tmpdir
+       ├── a
+       ├── b
+       ├── c
+       │   ├── a
+       │   │   ├── a
+       │   │   │   └── subfiles
+       │   │   └── subfiles
+       │   ├── wow
+       │   │   └── cats
+       │   │       └── are
+       │   │           ├── so
+       │   │           └── weird
+       │   └── z
+       ├── d
+       └── e
+           └── the
+               └── end""",
+    output)
