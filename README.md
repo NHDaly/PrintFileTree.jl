@@ -1,5 +1,9 @@
 # PrintFileTree
 
+[![Build Status](https://travis-ci.org/NHDaly/PrintFileTree.jl.svg?branch=master)](https://travis-ci.org/NHDaly/PrintFileTree.jl)
+[![Build status](https://ci.appveyor.com/api/projects/status/a2map67trmutdf6s?svg=true)](https://ci.appveyor.com/project/NHDaly/printfiletree-jl)
+
+
 Exports a single utility function, `printfiletree(path)`.
 
 ## printfiletree(path)
