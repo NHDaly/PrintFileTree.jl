@@ -15,24 +15,28 @@ touch(joinpath(tmpdir, "c", "z"))
 touch(joinpath(tmpdir, "d"))
 mkpath(joinpath(tmpdir, "e", "the", "end"))
 
-# Expect the following output, twice:
-# TODO: how to @test what's written to STDOUT?
-println("""$tmpdir
-├── a
-├── b
-├── c
-│   ├── a
-│   │   ├── a
-│   │   │   └── subfiles
-│   │   └── subfiles
-│   ├── wow
-│   │   └── cats
-│   │       └── are
-│   │           ├── so
-│   │           └── weird
-│   └── z
-├── d
-└── e
-    └── the
-        └── end""")
+# Run once to make sure it doesn't crash or something.
 printfiletree(tmpdir)
+
+# Actually @test the output.
+output = readstring(`$JULIA_HOME/julia -e "using PrintFileTree; printfiletree(\"$tmpdir\")"`)
+println(output)
+@test contains(output,
+     """$tmpdir
+        ├── a
+        ├── b
+        ├── c
+        │   ├── a
+        │   │   ├── a
+        │   │   │   └── subfiles
+        │   │   └── subfiles
+        │   ├── wow
+        │   │   └── cats
+        │   │       └── are
+        │   │           ├── so
+        │   │           └── weird
+        │   └── z
+        ├── d
+        └── e
+            └── the
+                └── end""")
