@@ -31,8 +31,8 @@ my/files
 
 ## Installation
 
-julia v0.6: `julia> Pkg.clone("https://github.com/NHDaly/PrintFileTree.jl")`
+julia v0.6: `julia> Pkg.add("PrintFileTree")`
 
-julia v0.7: `pkg> add "https://github.com/NHDaly/PrintFileTree.jl"`
+julia v0.7+: `pkg> add "PrintFileTree"`
 
 
