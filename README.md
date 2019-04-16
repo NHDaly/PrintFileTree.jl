@@ -30,6 +30,8 @@ my/files
 │   │           └── cool
 │   └── cool
 └── d
+
+8 directories, 5 files
 ```
 
 ## Installation
