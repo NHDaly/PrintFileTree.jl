@@ -6,6 +6,9 @@
 
 Exports a single utility function, `printfiletree(path)`.
 
+## Compatability
+Julia `v0.6`, `v0.7`, `v1.0`, `v1.1`+
+
 ## printfiletree(path)
 
 Prints a file tree rooted at path, in the same way as the Unix utility, `tree`.
